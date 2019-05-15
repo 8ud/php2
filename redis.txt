@@ -1,0 +1,29 @@
+Redis : Examen de contrôle - 2h
+On vous demande d’optimiser le temps d’affichage des scores d’utilisateurs d’un jeu en ligne.
+Pour l’instant la page des scores affiche les scores depuis une base MySQL et les temps de réponse
+sont longs et le serveur surchargé.
+Vous devez mettre en place une nouvelle page qui affichera les scores depuis un serveur Redis.
+Le jeu envoie automatiquement les scores à la page :
+ http:// serveur /score.php?username=xxx&score=xxx
+Un token de vérification est passé via la méthode POST pour identifier la source de mise à jour à
+travers la variable TOKEN_CHECK_SOURCE qui doit etre égale à
+« JX4YUiMqYCActHuPLYPA »
+Si ce token est invalide ou absent, le score n’est pas enregistré.
+On vous demande d’écrire le nouveau code de cette page pour remplacer l’ancien qui utilisait une
+base MySQL.
+Votre page affichera les scores/login par ordre décroissant.
+Votre page intégrera un système de pagination.
+Vous écrirez une routine d’import (import.php) des anciennes données depuis MySQL vers Redis
+avant de passer en production. Ces données pourront vous servir de tests pour l’affichage de votre
+page.
+Pour cela vous vous connectez avec les détails suivant à MySQL :
+• base : score
+• serveur : 172.20.255.77
+• table : score
+• username : score
+• password : score
+Vous utiliserez la base d’index 8 de Redis.
+Vous écrirez un fichier tests.php qui mettra en évidence le gain de temps d’exécution d’une requete
+pour afficher tous les scores entre MySQL et Redis une fois l’import fait.
+Vous ajouterez une recherche possible sur la page des scores à partir d’un login pour afficher sa
+position et son score s’il existe.
