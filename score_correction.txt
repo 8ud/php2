@@ -1,0 +1,75 @@
+Test
+
+<?php
+
+// IMPORT
+$r = new Redis();  
+$r->connect('localhost');
+$r->select(8);
+
+$m = new PDO('mysql:host=127.0.0.1;dbname=score', 'score', 'score');
+$tableau = $m->query('SELECT * from score');
+//fin
+foreach ($tableau as $ligne) 
+{
+        $r->zAdd('scores', $ligne['score'],  $ligne['login']);
+}
+
+echo "NB Enregistrements : " . $r->zSize('scores');
+
+// ********************************************************************
+<?php
+
+for($
+$username = '';
+$score = '';
+
+?>
+<form action="score.php?username=<?= $username ?>&score=<?= $score ?>" method="post">
+        <input type="hidden" name="TOKEN_CHECK_SOURCE" value="JX4YUiMqYCActHuPLYPA" />
+        <input type="submit" value="Envoyer" />
+</form>
+
+// ********************************************************************
+<?php
+
+// SCORE
+$r = new Redis();  
+$r->connect('localhost');
+$r->select(8);
+
+if ($_POST['TOKEN_CHECK_SOURCE'] == 'JX4YUiMqYCActHuPLYPA')
+{
+    $r->zAdd('scores', $_GET['score'],  $_GET['username']);
+}
+
+echo "Vous avez demandé la page : " . $_GET['page'] . "<br/>";
+
+$debut = $_GET['page'] * 10;
+$fin = $debut + 9;
+
+$tableau = $r->zRevRange('scores', $debut, $fin, True);
+
+foreach ($tableau as $k => $v) 
+{
+    echo $k . " : " . $v . "<br/>";
+}
+
+if($_GET['page'] == 0)
+{
+    $precedente = 0;
+}
+else
+{
+    $precedente = ($_GET['page'] - 1);
+}
+
+$suivante = ($_GET['page'] + 1);
+
+echo '<a href="?page=' . $precedente . '"><</a>';
+echo " - ";
+echo '<a href="?page=' . $suivante . '">></a>';
+
+// ********************************************************************
+
+// ********************************************************************

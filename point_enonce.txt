@@ -1,0 +1,24 @@
+ Proposition de correction pour l'exercice sur la classe Chaine -->
+
+Coller ici vos propositions de corrections
+(merci à Sébastien, Léa et Kévin)
+
+Exercice Point
+Écrire une classe Point qui définit un point sur un repere.
+Attributs : ordonnée, abscisse ou x, y
+Méthodes :
+    • get/set, 
+    • déplacement (on lui donne un vecteur longueur x, longueur y), 
+    • carré (qui renvoie les coordonnées des 4 points, en lui donnant une longueur), 
+        ◦ le point en bas à gauche est celui déjà défini
+    • distance(Point p) qui calcule la distance entre 2 points distance=√((x2−x1)^2+(y2−y1)²)
+    • tostring
+    
+Écrire une classe Cercle qui définit des cercles
+Attributs : centre (de type Point), diametre
+Méthodes : 
+    • get/set, 
+    • Surface, 
+    • Périmetre, 
+    • InCercle(Point p) qui dit si un point fait partie du cercle ou pas 
+    • toString

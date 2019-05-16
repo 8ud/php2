@@ -2,7 +2,13 @@
 
 $score = new Redis();
 $score->connect('172.20.255.210');
-$score->select(8); ?>
+$score->select(8);
+
+
+$username = 'rodolphe';
+$score = '1800';
+
+?>
 
 
 
@@ -21,9 +27,9 @@ $score->select(8); ?>
 </head>
 <body>
    
-<form action="score.php" method="get">
-Username<input  class="form-control col-4 offset-4" type="text" name="username">
-Score<input  class="form-control col-4 offset-4" type="text" name="score">
+<form action="score.php?username=<?= $username ?>&score=<?= $score ?>" method="post">
+<!-- Username<input  class="form-control col-4 offset-4" type="text" name="username">
+Score<input  class="form-control col-4 offset-4" type="text" name="score"> -->
 <input type="text" name="token" value="JX4YUiMqYCActHuPLYPA" hidden>
 <button class="btn btn-success" type="submit">Envoyer</button>
 
